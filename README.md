@@ -2,6 +2,6 @@
 
 Building using expo 
 
-![](../../../../Downloads/ShareLoc@2x.png)
+![](assets/ShareLoc@2x.png)
 
 board made with -> whimsical
