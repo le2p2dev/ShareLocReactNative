@@ -1,8 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+
 import MySplashScreen from './screens/MySplashScreen';
+import HomeScreen from './screens/HomeScreen';
+import SigninScreen from './screens/SigninScreen';
+import SignupScreen from './screens/SignupScreen';
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -24,26 +28,18 @@ export default function App() {
     } prepare();
   }, [appIsReady]);
 
+
+  const Drawer = createDrawerNavigator();
+
   return appIsReady ? (
-    <View style={styles.container}>
-      <Text style={styles.title}>ShareLoc Menu</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Signin" component={SigninScreen} />
+        <Drawer.Screen name="Signup" component={SignupScreen} />
+        <Drawer.Screen name="Home" component={HomeScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   ) : (
     <MySplashScreen />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#aaf0d1',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    color: '#404040',
-    fontSize: 25,
-    fontFamily: 'Georama Black',
-  },
-});
