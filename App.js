@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
-import MySplashScreen from "./src/MySplashScreen";
+import MySplashScreen from './screens/MySplashScreen';
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -25,12 +25,12 @@ export default function App() {
   }, [appIsReady]);
 
   return appIsReady ? (
-      <View style={styles.container}>
-        <Text style={styles.title}>ShareLoc Menu</Text>
-        <StatusBar style="auto" />
-      </View>
+    <View style={styles.container}>
+      <Text style={styles.title}>ShareLoc Menu</Text>
+      <StatusBar style="auto" />
+    </View>
   ) : (
-      <MySplashScreen />
+    <MySplashScreen />
   );
 }
 
