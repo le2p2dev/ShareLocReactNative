@@ -94,18 +94,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#746AF9",
         alignItems: "center",
         justifyContent: "center",
-        height: 40,
-        padding: 10,
+        padding: 15,
     },
 
     loginBtn: {
-        width: "60%",
         borderRadius: 25,
-        height: 50,
         alignItems: "center",
         justifyContent: "center",
         marginTop: 40,
         backgroundColor: "#746AF9",
+        paddingVertical: 15,
+        paddingHorizontal: 50,
+        marginBottom: 10,
     },
 
     switchBtntext: {
