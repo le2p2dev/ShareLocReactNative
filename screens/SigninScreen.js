@@ -2,7 +2,7 @@ import {StyleSheet, Text, TextInput, View, Button, TouchableOpacity} from 'react
 import {StatusBar} from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
 
-export default function SigninScreen() {
+export default function SigninScreen({navigation}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -41,11 +41,11 @@ export default function SigninScreen() {
                 <Text style={styles.switchBtntext}>Mot de passe oublié ?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.loginBtn}>
+            <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Home')}>
                 <Text style={styles.logintext}>CONNEXION</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.switch_button}>
+            <TouchableOpacity style={styles.switch_button} onPress={() => navigation.navigate('Signup')}>
                 <Text style={styles.switchBtntext}>Créer un compte ?</Text>
             </TouchableOpacity>
         </View>
