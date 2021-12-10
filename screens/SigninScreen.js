@@ -2,7 +2,7 @@ import {StyleSheet, Text, TextInput, View, Button, TouchableOpacity} from 'react
 import {StatusBar} from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
 
-export default function SigninScreen() {
+export default function SigninScreen({navigation}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -41,11 +41,11 @@ export default function SigninScreen() {
                 <Text style={styles.switchBtntext}>Mot de passe oublié ?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.loginBtn}>
+            <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Home')}>
                 <Text style={styles.logintext}>CONNEXION</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.switch_button}>
+            <TouchableOpacity style={styles.switch_button} onPress={() => navigation.navigate('Signup')}>
                 <Text style={styles.switchBtntext}>Créer un compte ?</Text>
             </TouchableOpacity>
         </View>
@@ -94,18 +94,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#746AF9",
         alignItems: "center",
         justifyContent: "center",
-        height: 40,
-        padding: 10,
+        padding: 15,
     },
 
     loginBtn: {
-        width: "60%",
         borderRadius: 25,
-        height: 50,
         alignItems: "center",
         justifyContent: "center",
         marginTop: 40,
         backgroundColor: "#746AF9",
+        paddingVertical: 15,
+        paddingHorizontal: 50,
+        marginBottom: 10,
     },
 
     switchBtntext: {
