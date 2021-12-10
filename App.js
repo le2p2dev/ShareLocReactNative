@@ -3,8 +3,11 @@ import * as Font from 'expo-font';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
-import MySplashScreen from './screens/MySplashScreen';
+import ColocationScreen from './screens/ColocationScreen';
 import HomeScreen from './screens/HomeScreen';
+import MySplashScreen from './screens/MySplashScreen';
+import NotificationScreen from './screens/NotificationScreen';
+import SettingsScreen from './screens/SettingsScreen';
 import SigninScreen from './screens/SigninScreen';
 import SignupScreen from './screens/SignupScreen';
 
@@ -34,9 +37,12 @@ export default function App() {
   return appIsReady ? (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Signin" component={SigninScreen} />
-        <Drawer.Screen name="Signup" component={SignupScreen} />
-        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Signin" component={SigninScreen} options={{title: 'Connexion'}} />
+        <Drawer.Screen name="Signup" component={SignupScreen} options={{title: 'Inscription'}} />
+        <Drawer.Screen name="Home" component={HomeScreen} options={{title: 'Accueil'}} />
+        <Drawer.Screen name="Colocation" component={ColocationScreen} options={{title: 'Mes colocations'}} />
+        <Drawer.Screen name="Notification" component={NotificationScreen} options={{title: 'Notifications'}} />
+        <Drawer.Screen name="Setting" component={SettingsScreen} options={{title: 'Paramètres'}} />
       </Drawer.Navigator>
     </NavigationContainer>
   ) : (
