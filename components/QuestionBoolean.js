@@ -1,23 +1,27 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-export default function QuestionBoolean({question}) {
+export default function QuestionBoolean({question, setAnswer}) {
+
+    //<QuestionBoolean question="TEXT" answer={answer} setAnswer={setAnswer}/>
+    //appelle de composant à faire dans le parent.
+    //const [answer, setAnswer] = useState(null);
+    //state à créer.
+
     return (
         <View style={styles.container}>
             <Text style={styles.question}>{question}</Text>
 
             <View style={styles.horizon}>
 
-                <TouchableOpacity style={[styles.button_vote, styles.button_vote_oui]}>
+                <TouchableOpacity style={[styles.button_vote, styles.button_vote_oui]} onPress={() => setAnswer(true)}>
                     <Text style={styles.button_oui}>OUI</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={[styles.button_vote, styles.button_vote_non]}>
+                <TouchableOpacity style={[styles.button_vote, styles.button_vote_non]} onPress={() => setAnswer(false)}>
                     <Text style={styles.button_non}>NON</Text>
                 </TouchableOpacity>
-
             </View>
-
         </View>
     );
 }
