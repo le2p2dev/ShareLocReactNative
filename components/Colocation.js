@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Colocation({ name, description, dateCreation }){
+export default function Colocation({ name, description, numberPersons }){
     return (
         <View style={[styles.card, styles.body]}>
             <Text style={styles.title}>{name}</Text>
             <Text style={styles.txt}>{description}</Text>
-            <Text style={styles.footer}>Créer le {dateCreation}</Text>
+            <Text style={styles.footer}>{numberPersons} {numberPersons > 1 ? 'collocataires' : 'collocataire'}</Text>
         </View>
     );
 };
