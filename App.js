@@ -3,7 +3,7 @@ import * as Font from 'expo-font';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
-import ColocationScreen from './screens/ColocationScreen';
+import HouseShareScreen from './screens/HouseShareScreen';
 import HomeScreen from './screens/HomeScreen';
 import MySplashScreen from './screens/MySplashScreen';
 import NotificationScreen from './screens/NotificationScreen';
@@ -42,7 +42,7 @@ export default function App() {
         <Drawer.Screen name="Signup" component={SignupScreen} options={{title: 'Inscription'}} />
         <Drawer.Screen name="Home" component={HomeScreen} options={{title: 'Accueil'}} />
         <Drawer.Screen name="AddServices" component={AddServices} options={{title: 'Proposition service'}} />
-        <Drawer.Screen name="Colocation" component={ColocationScreen} options={{title: 'Mes colocations'}} />
+        <Drawer.Screen name="HouseShare" component={HouseShareScreen} options={{title: 'Mes colocations'}} />
         <Drawer.Screen name="Notification" component={NotificationScreen} options={{title: 'Notifications'}} />
         <Drawer.Screen name="Setting" component={SettingsScreen} options={{title: 'Paramètres'}} />
       </Drawer.Navigator>
