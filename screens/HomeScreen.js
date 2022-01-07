@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 export default function HomeScreen() {
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>ShareLoc Home</Text>
-      <StatusBar style="auto" />
-    </View>
+      <View style={styles.container}>
+
+        <View>
+          <Text style={styles.title}>ShareLoc Home</Text>
+          <StatusBar style="auto" />
+        </View>
+
+      </View>
   );
 }
 
