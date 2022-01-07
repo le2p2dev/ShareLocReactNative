@@ -11,6 +11,7 @@ import SettingsScreen from './screens/SettingsScreen';
 import SigninScreen from './screens/SigninScreen';
 import SignupScreen from './screens/SignupScreen';
 import AddServices from "./screens/AddServices";
+import ValidationService from "./screens/ValidationService";
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -43,6 +44,7 @@ export default function App() {
         <Drawer.Screen name="Home" component={HomeScreen} options={{title: 'Accueil'}} />
         <Drawer.Screen name="AddServices" component={AddServices} options={{title: 'Proposition service'}} />
         <Drawer.Screen name="HouseShare" component={HouseShareScreen} options={{title: 'Mes colocations'}} />
+        <Drawer.Screen name="ValidationService" component={ValidationService} options={{title: 'Validation service'}} />
         <Drawer.Screen name="Notification" component={NotificationScreen} options={{title: 'Notifications'}} />
         <Drawer.Screen name="Setting" component={SettingsScreen} options={{title: 'Paramètres'}} />
       </Drawer.Navigator>
