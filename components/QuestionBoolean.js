@@ -28,7 +28,6 @@ export default function QuestionBoolean({question, setAnswer}) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: '#aaf0d1',
         alignItems: 'center',
         justifyContent: 'center',
