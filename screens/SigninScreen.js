@@ -1,30 +1,37 @@
-import {StyleSheet, Text, TextInput, View, Button, TouchableOpacity} from 'react-native';
-import {StatusBar} from 'expo-status-bar';
-import React, {useEffect, useState} from 'react';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
 
-export default function SigninScreen({navigation}) {
-    const [email, setEmail] = useState('');
+import { useAuthentification } from '../utilities/authentification';
+
+export default function SigninScreen({ navigation }) {
+    const { isLoading, signIn } = useAuthentification();
+
+    const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = () => {
+		signIn({ login, password })
+			.catch(err => {
+				setLogin('');
+				setPassword('');
+				setMessage(err.message);
+			});
+	};
 
     return (
         <View style={styles.container}>
+            <Text style={styles.title}>ShareLoc</Text>
 
-            <View>
-                <Text style={styles.title}>ShareLoc</Text>
-                <StatusBar style="auto"/>
-            </View>
-
-            <View>
-                <Text style={styles.titlesmall}>Connexion</Text>
-                <StatusBar style="auto"/>
-            </View>
+            <Text style={styles.titlesmall}>Connexion</Text>
 
             <View style={styles.inputView}>
                 <TextInput
                     style={styles.TextInput}
-                    placeholder="Email"
+                    placeholder="Login"
                     placeholderTextColor="#404040"
-                    onChangeText={(email) => setEmail(email)}
+                    onChangeText={(login) => setLogin(login)}
                 />
             </View>
             <View style={styles.inputView}>
@@ -41,13 +48,18 @@ export default function SigninScreen({navigation}) {
                 <Text style={styles.switchBtntext}>Mot de passe oublié ?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Home')}>
+            <TouchableOpacity style={styles.switch_button} onPress={() => handleSubmit()}>
                 <Text style={styles.logintext}>CONNEXION</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.switch_button} onPress={() => navigation.navigate('Signup')}>
                 <Text style={styles.switchBtntext}>Créer un compte ?</Text>
             </TouchableOpacity>
+
+            <Text>{isLoading ? 'Vérification de l\'authentification...' : ''}</Text>
+            <Text style={{ color: 'red' }}>{message}</Text>
+
+            <StatusBar style="auto" />
         </View>
     );
 }
@@ -113,6 +125,6 @@ const styles = StyleSheet.create({
     },
 
     logintext: {
-      color: "#FFF",
+        color: "#FFF",
     },
 });

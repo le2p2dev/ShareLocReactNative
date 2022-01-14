@@ -1,32 +1,41 @@
-import {StyleSheet, Text, TextInput, View, Button, TouchableOpacity} from 'react-native';
-import {StatusBar} from 'expo-status-bar';
-import React, {useEffect, useState} from 'react';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
 
-export default function SignupScreen({navigation}) {
-    const[nom, setNom] = useState('');
-    const[prenom, setPrenom] = useState('');
-    const [email, setEmail] = useState('');
+import { useAuthentification } from '../utilities/authentification';
+
+export default function SignupScreen({ navigation }) {
+    const { isLoading, signUp } = useAuthentification();
+
+    const [lastname, setLastname] = useState('');
+    const [firstname, setFirstname] = useState('');
+    const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = () => {
+		signUp({ lastname, firstname, login, password })
+			.catch(err => {
+                setLastname('');
+                setFirstname('');
+                setLogin('');
+                setPassword('');
+				setMessage(err.message);
+			});
+	};
 
     return (
         <View style={styles.container}>
+            <Text style={styles.title}>ShareLoc</Text>
 
-            <View>
-                <Text style={styles.title}>ShareLoc</Text>
-                <StatusBar style="auto"/>
-            </View>
-
-            <View>
-                <Text style={styles.titlesmall}>Inscription</Text>
-                <StatusBar style="auto"/>
-            </View>
+            <Text style={styles.titlesmall}>Inscription</Text>
 
             <View style={styles.inputView}>
                 <TextInput
                     style={styles.TextInput}
                     placeholder="Nom"
                     placeholderTextColor="#404040"
-                    onChangeText={(nom) => setNom(nom)}
+                    onChangeText={(lastname) => setLastname(lastname)}
                 />
             </View>
 
@@ -35,16 +44,16 @@ export default function SignupScreen({navigation}) {
                     style={styles.TextInput}
                     placeholder="Prénom"
                     placeholderTextColor="#404040"
-                    onChangeText={(prenom) => setPrenom(prenom)}
+                    onChangeText={(firstname) => setFirstname(firstname)}
                 />
             </View>
 
             <View style={styles.inputView}>
                 <TextInput
                     style={styles.TextInput}
-                    placeholder="Email"
+                    placeholder="Login"
                     placeholderTextColor="#404040"
-                    onChangeText={(email) => setEmail(email)}
+                    onChangeText={(login) => setLogin(login)}
                 />
             </View>
             <View style={styles.inputView}>
@@ -61,10 +70,14 @@ export default function SignupScreen({navigation}) {
                 <Text style={styles.switchBtntext}>Déjà un compte ?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Signin')}>
+            <TouchableOpacity style={styles.loginBtn} onPress={() => handleSubmit({ lastname, firstname, login, password })}>
                 <Text style={styles.logintext}>Inscription</Text>
-
             </TouchableOpacity>
+
+            <Text>{isLoading ? 'Vérification de l\'authentification...' : ''}</Text>
+            <Text style={{ color: 'red' }}>{message}</Text>
+
+            <StatusBar style="auto" />
         </View>
     );
 }
